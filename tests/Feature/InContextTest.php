@@ -107,7 +107,8 @@ class InContextTest extends TestCase
             ->assertSee('Translations on this page')
             ->assertSee('6 strings in French')
             ->assertSee('2 missing</span>', false)
-            ->assertSeeInOrder(['billing.invoice.title', 'Welcome back, :name!', 'billing.invoice.due', 'billing.plans', 'Pay now', 'billing.missing_line'])
+            // Missing strings first, then in page order.
+            ->assertSeeInOrder(['<code>billing.plans</code>', '<code>billing.missing_line</code>', '<code>billing.invoice.title</code>', '<code>Welcome back, :name!</code>', '<code>billing.invoice.due</code>', '<code>Pay now</code>'], false)
             ->assertSee('Facture :number')
             ->assertSee('data-label="English"', false)
             ->assertSee('action="http://localhost/translations/fr/entries"', false);

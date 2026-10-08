@@ -1,0 +1,21 @@
+{
+    "Welcome back, :name!": "Welcome back, :name!",
+    "Your next invoice of :amount is due on :date.": "Your next invoice of :amount is due on :date.",
+    "Pay now": "Pay now",
+    "Plan & billing": "Plan & billing",
+    "Settings for :company": "Settings for :company",
+    "Change plan": "Change plan",
+    "Update card": "Update card",
+    "Download PDF": "Download PDF",
+    "Send reminder": "Send reminder",
+    "Export CSV": "Export CSV",
+    "Search invoices…": "Search invoices…",
+    "Dashboard": "Dashboard",
+    "Invoices": "Invoices",
+    "Customers": "Customers",
+    "Payments": "Payments",
+    "Reports": "Reports",
+    "Settings": "Settings",
+    "Help center": "Help center",
+    "Sign out": "Sign out"
+}

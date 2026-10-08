@@ -1,0 +1,20 @@
+{
+    "Welcome back, :name!": "Bon retour, :name !",
+    "Your next invoice of :amount is due on :date.": "Votre prochaine facture de :amount est due le :date.",
+    "Pay now": "Payer maintenant",
+    "Plan & billing": "Offre et facturation",
+    "Settings for :company": "Paramètres de :company",
+    "Change plan": "Changer d’offre",
+    "Update card": "Modifier la carte",
+    "Download PDF": "Télécharger le PDF",
+    "Export CSV": "Exporter en CSV",
+    "Search invoices…": "Rechercher une facture…",
+    "Dashboard": "Tableau de bord",
+    "Invoices": "Factures",
+    "Customers": "Clients",
+    "Payments": "Paiements",
+    "Reports": "Rapports",
+    "Settings": "Paramètres",
+    "Help center": "Centre d’aide",
+    "Sign out": "Se déconnecter"
+}

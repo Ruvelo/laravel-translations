@@ -1,0 +1,19 @@
+{
+    "Welcome back, :name!": "Willkommen zurück, :name!",
+    "Your next invoice of :amount is due on :date.": "Ihre nächste Rechnung über :amount ist am :date fällig.",
+    "Pay now": "Jetzt bezahlen",
+    "Plan & billing": "Tarif & Abrechnung",
+    "Settings for :company": "Einstellungen für :company",
+    "Change plan": "Tarif ändern",
+    "Update card": "Karte aktualisieren",
+    "Download PDF": "PDF herunterladen",
+    "Search invoices…": "Rechnungen suchen…",
+    "Dashboard": "Übersicht",
+    "Invoices": "Rechnungen",
+    "Customers": "Kunden",
+    "Payments": "Zahlungen",
+    "Reports": "Berichte",
+    "Settings": "Einstellungen",
+    "Help center": "Hilfe",
+    "Sign out": "Abmelden"
+}
