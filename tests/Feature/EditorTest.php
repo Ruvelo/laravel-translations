@@ -28,19 +28,9 @@ class EditorTest extends TestCase
 
         $this->get('/translations')
             ->assertOk()
-            ->assertSeeInOrder(['100', 'English', 'Source', '10', 'German', 'Just started', '9 missing', '70', 'French', 'In progress', '1 not exported', '3 missing'], false)
-            ->assertSee('One edit is live on the site but not in your lang files yet.')
-            ->assertSee('Translate 3 missing')
-            ->assertSee(route('translations.editor', ['locale' => 'fr', 'filter' => 'missing']), false)
-            ->assertSeeInOrder(['Recent edits', 'changed', 'Sign out', 'in French', 'Se déconnecter'], false)
+            ->assertSeeInOrder(['English', 'Source', '100', 'German', '10', '9 missing', 'French', '70', '3 missing', '1 not exported'], false)
+            ->assertSee('1 change is not in your lang files yet')
             ->assertSee('Add a language');
-    }
-
-    public function test_the_recent_edits_feed_flags_placeholder_problems(): void
-    {
-        Translations::set('fr', 'Welcome back, :name!', 'Bon retour !');
-
-        $this->get('/translations')->assertOk()->assertSee('trans-feed-warn', false)->assertSee(':name');
     }
 
     public function test_the_editor_lists_source_and_translation(): void

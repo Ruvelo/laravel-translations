@@ -25,26 +25,10 @@ class OverviewController
             'progress' => Translations::progress($locale),
         ]);
 
-        // Overall progress counts every string in every language but the
-        // source, so a big, nearly empty language weighs what it should.
-        $targets = $locales->reject(fn (array $locale) => $locale['progress']->isSource);
-        $total = $targets->sum(fn (array $locale) => $locale['progress']->total);
-        $translated = $targets->sum(fn (array $locale) => $locale['progress']->translated);
-
-        $pending = Translations::pending();
-        $recent = array_slice($pending, 0, 6);
-
         return response()->view('translations::index', [
             'locales' => $locales,
-            'pending' => count($pending),
+            'pending' => count(Translations::pending()),
             'source' => Translations::sourceLocale(),
-            'overall' => [
-                'percent' => $total > 0 ? (int) floor($translated / $total * 100) : 100,
-                'missing' => $total - $translated,
-                'languages' => $targets->count(),
-            ],
-            'recent' => $recent,
-            'editors' => Translations::editorNames($recent),
         ]);
     }
 }

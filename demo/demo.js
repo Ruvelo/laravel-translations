@@ -53,7 +53,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         // The locale switcher submits to the overview with ?locale=xx.
-        if (params.get('locale') && document.querySelector('.trans-langs')) {
+        if (params.get('locale') && document.querySelector('.trans-cards')) {
             location.replace(location.pathname.replace(/\/?$/, '/') + encodeURIComponent(params.get('locale')) + '/');
             return;
         }
