@@ -60,6 +60,7 @@
     .trans-tb-row span { color: var(--trans-text-3); }
     .trans-tb-row span.is-error { color: var(--trans-danger); }
     .trans-tb-row button { padding: 6px 10px; font-size: 12px; }
+    .trans-tb-item:not(:focus-within) .trans-tb-row button { background: transparent; color: var(--trans-text-2); border-color: var(--trans-line); box-shadow: none; }
     .trans-tb-empty { padding: 28px 18px; color: var(--trans-text-3); font-size: 13px; text-align: center; }
     .trans-tb-empty strong { display: block; color: var(--trans-ink); margin-bottom: 4px; font-size: 14px; }
     .trans-tb-foot { display: flex; gap: 14px; padding: 10px 16px; border-top: 1px solid var(--trans-line); background: var(--trans-subtle); font-size: 12.5px; }
@@ -126,7 +127,7 @@
                             @if (! $isSource && $entry->source !== null && ! $entry->key->isJson())
                                 <p class="trans-tb-source" data-label="{{ $sourceName }}">{{ $entry->source }}</p>
                             @endif
-                            <textarea id="trans-tb-{{ $entry->id() }}" name="value" rows="1" lang="{{ $locale }}" data-source="{{ $entry->source }}">{{ $entry->value() }}</textarea>
+                            <textarea id="trans-tb-{{ $entry->id() }}" name="value" rows="1" lang="{{ $locale }}" data-source="{{ $entry->source }}" @if ($entry->file !== null) @if ($entry->file !== null) data-file="{{ $entry->file }}" @endif @endif>{{ $entry->value() }}</textarea>
                             @php($warnings = $entry->warnings())
                             <ul class="trans-tb-warnings" @if ($warnings === []) hidden @endif aria-live="polite">
                                 @foreach ($warnings as $warning)
@@ -189,6 +190,13 @@
                     });
                     const data = await response.json().catch(() => ({}));
                     if (!response.ok) throw new Error(data.message || 'That didn’t save. Try again.');
+                    // Apps that re-render without a reload (Livewire, Inertia) can
+                    // listen for this event and call preventDefault().
+                    const saved = new CustomEvent('translations:saved', { bubbles: true, cancelable: true, detail: { entry: data.entry, textarea } });
+                    if (!panel.dispatchEvent(saved)) {
+                        state.textContent = 'Saved';
+                        return;
+                    }
                     state.textContent = 'Saved. Reloading…';
                     // Remember where we were, then show the page with the new text.
                     try { sessionStorage.setItem('trans-tb-focus', textarea.id); sessionStorage.setItem('trans-tb-scroll', panel.querySelector('.trans-tb-list').scrollTop); } catch (e) {}

@@ -24,7 +24,7 @@
             <input type="hidden" name="group" value="{{ $entry->key->group }}">
             <input type="hidden" name="key" value="{{ $entry->key->item }}">
             <label class="trans-sr" for="{{ $entry->id() }}-value">{{ $localeName }} for {{ $entry->key->full() }}</label>
-            <textarea id="{{ $entry->id() }}-value" name="value" rows="1" lang="{{ $locale }}" dir="{{ $dir }}" spellcheck="true" data-source="{{ $entry->source }}" @if ($entry->isMissing()) placeholder="Missing: type the {{ $localeName }} text" @endif>{{ $value }}</textarea>
+            <textarea id="{{ $entry->id() }}-value" name="value" rows="1" lang="{{ $locale }}" dir="{{ $dir }}" spellcheck="true" data-source="{{ $entry->source }}" @if ($entry->file !== null) @if ($entry->file !== null) data-file="{{ $entry->file }}" @endif @endif @if ($entry->isMissing()) placeholder="Missing: type the {{ $localeName }} text" @endif>{{ $value }}</textarea>
             <ul class="trans-warnings" @if ($warnings === []) hidden @endif aria-live="polite">
                 @foreach ($warnings as $warning)
                     <li>{{ $warning }}</li>

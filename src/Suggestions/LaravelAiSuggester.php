@@ -30,7 +30,12 @@ class LaravelAiSuggester implements Suggester
 
         $provider = config('translations.suggestions.provider') ?? config('ai.default');
 
-        return is_string($provider) && $provider !== '' && is_array(config('ai.providers.'.$provider));
+        if (! is_string($provider) || $provider === '' || ! is_array($settings = config('ai.providers.'.$provider))) {
+            return false;
+        }
+
+        // Providers that take a key need one; local ones (Ollama) don't.
+        return ! array_key_exists('key', $settings) || (is_string($settings['key']) && $settings['key'] !== '');
     }
 
     public function suggest(string $text, string $from, string $to, string $key = ''): string

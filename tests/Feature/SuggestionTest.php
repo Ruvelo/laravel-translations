@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ruvelo\Translations\Tests\Feature;
 
 use Laravel\Ai\AiServiceProvider;
+use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Prompts\AgentPrompt;
 use Ruvelo\Translations\Suggestions\Suggester;
 use Ruvelo\Translations\Suggestions\TranslationAgent;
@@ -13,6 +14,15 @@ use Ruvelo\Translations\Translations;
 
 class SuggestionTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        if (! interface_exists(Agent::class)) {
+            $this->markTestSkipped('laravel/ai is not installed.');
+        }
+
+        parent::setUp();
+    }
+
     protected function getPackageProviders($app): array
     {
         return [...parent::getPackageProviders($app), AiServiceProvider::class];

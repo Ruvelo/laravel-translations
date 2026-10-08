@@ -163,7 +163,8 @@
     .trans-cell textarea { display: block; min-height: 2.6rem; resize: vertical; line-height: 1.5; padding: .5rem .7rem; font: .925rem/1.5 var(--trans-sans); field-sizing: content; }
     tr[data-status=missing] .trans-cell textarea { background: color-mix(in srgb, var(--trans-danger-soft) 45%, var(--trans-bg)); border-color: color-mix(in srgb, var(--trans-danger) 30%, var(--trans-line)); }
     tr[data-status=missing] .trans-cell textarea:focus { background: var(--trans-bg); border-color: var(--trans-accent); }
-    .trans-cell-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .6rem; margin-top: .45rem; min-height: 1.4rem; font-size: .8rem; color: var(--trans-text-3); }
+    .trans-cell-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .6rem; margin-top: .4rem; font-size: .8rem; color: var(--trans-text-3); }
+    .trans-cell-foot:not(:has(> .trans-chip:not([hidden]), .trans-state:not(:empty), button:not([hidden]))) { display: none; }
     .trans-cell-foot .trans-actions { display: flex; gap: .6rem; margin-left: auto; align-items: center; }
     .trans-state { font-size: .78rem; color: var(--trans-text-3); }
     .trans-state.is-saved { color: var(--trans-success); }

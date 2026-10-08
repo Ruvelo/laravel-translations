@@ -9,7 +9,7 @@ namespace Ruvelo\Translations\Support;
  * gained: `:name` replacements, `{count}` style placeholders, plural forms
  * separated by `|`, `{0}` / `[1,*]` ranges, and HTML tags.
  *
- * The same rules run in the browser (resources/views/partials/scripts),
+ * The same rules run in the browser (resources/views/partials/check.blade.php),
  * so warnings appear while typing. Keep the two in step.
  */
 final class Placeholders

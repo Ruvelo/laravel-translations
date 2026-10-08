@@ -17,7 +17,7 @@ abstract class TestCase extends Orchestra
 {
     use RefreshDatabase;
 
-    protected string $lang;
+    protected string $lang = '';
 
     protected function setUp(): void
     {
@@ -30,7 +30,9 @@ abstract class TestCase extends Orchestra
 
     protected function tearDown(): void
     {
-        (new Filesystem)->deleteDirectory(dirname($this->lang));
+        if ($this->lang !== '') {
+            (new Filesystem)->deleteDirectory(dirname($this->lang));
+        }
 
         parent::tearDown();
     }

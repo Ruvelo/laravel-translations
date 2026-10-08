@@ -68,7 +68,7 @@
                                     <span><span class="trans-avatar" aria-hidden="true">{{ collect(explode(' ', $editor))->map(fn ($part) => mb_substr($part, 0, 1))->take(2)->implode('') }}</span>{{ $editor }}</span>
                                 @endif
                                 @if ($entry->override)
-                                    <time datetime="{{ $entry->override->updated_at->toIso8601String() }}">{{ $entry->override->updated_at->diffForHumans() }}</time>
+                                    <time datetime="{{ $entry->override->updated_at->toIso8601String() }}">{{ $entry->override->updated_at->copy()->locale('en')->diffForHumans() }}</time>
                                 @endif
                                 @if ($entry->fileChangedSinceEdit())
                                     <span class="is-warning">The lang file changed after this edit. Check which text is right.</span>

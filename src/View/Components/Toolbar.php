@@ -72,6 +72,12 @@ class Toolbar extends Component
             }
         }
 
+        // What needs attention first: missing, then placeholder trouble, then
+        // the rest in the order the page used them.
+        $order = array_flip(array_keys($entries));
+        uasort($entries, fn (Entry $a, Entry $b) => [! $a->isMissing(), $a->warnings() === [], $order[$a->key->hash()]]
+            <=> [! $b->isMissing(), $b->warnings() === [], $order[$b->key->hash()]]);
+
         return [
             'marker' => self::MARKER,
             'editMode' => $editMode,
