@@ -1,0 +1,12 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "declare_strict_types": true
+    },
+    "exclude": [
+        "tests/Fixtures/lang",
+        "tests/Fixtures/packages",
+        "tests/Fixtures/code",
+        "demo/lang"
+    ]
+}

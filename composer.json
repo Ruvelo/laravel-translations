@@ -1,0 +1,83 @@
+{
+    "name": "ruvelo/laravel-translations",
+    "description": "A modern translation manager for Laravel: edit your lang files in the browser, see what's missing, edit strings in context on the page, and export the changes back to your repository.",
+    "keywords": [
+        "laravel",
+        "translations",
+        "localization",
+        "i18n",
+        "lang",
+        "translation-manager"
+    ],
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://ruvelo.github.io/laravel-translations/",
+    "authors": [
+        {
+            "name": "François Bultez",
+            "homepage": "https://github.com/francoisbultez",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "laravel/framework": "^12.4.1|^13.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.13",
+        "laravel/ai": "^1.0",
+        "laravel/pint": "^1.32",
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.5|^12.0"
+    },
+    "suggest": {
+        "laravel/ai": "Drafts translations with the \"Suggest\" button (^1.0)"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ruvelo\\Translations\\": "src/",
+            "Ruvelo\\Translations\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ruvelo\\Translations\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ruvelo\\Translations\\TranslationsServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": "pint --test",
+        "format": "pint",
+        "analyse": "phpstan analyse --memory-limit=1G",
+        "check": [
+            "@lint",
+            "@analyse",
+            "@test"
+        ],
+        "demo": "php demo/build.php build/site && cp -r art build/site/art && echo 'Serve it: php -S 127.0.0.1:8000 -t build, then open /site/'"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "support": {
+        "issues": "https://github.com/Ruvelo/laravel-translations/issues",
+        "source": "https://github.com/Ruvelo/laravel-translations"
+    },
+    "scripts-descriptions": {
+        "test": "Run the test suite",
+        "lint": "Check code style",
+        "format": "Fix code style",
+        "analyse": "Run static analysis",
+        "check": "Lint, analyse and test: what CI runs",
+        "demo": "Build the static demo site into build/"
+    }
+}
