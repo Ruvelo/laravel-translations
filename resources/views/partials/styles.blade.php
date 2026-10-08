@@ -117,9 +117,12 @@
     .trans-card-top strong { font-size: 1.05rem; font-weight: 600; letter-spacing: -.01em; margin-right: auto; }
     .trans-percent { font-size: 2.25rem; font-weight: 600; letter-spacing: -.045em; line-height: 1.1; margin-top: .6rem; font-variant-numeric: tabular-nums; }
     .trans-percent small { font-size: 1rem; color: var(--trans-text-3); font-weight: 500; letter-spacing: 0; margin-left: .1rem; }
-    .trans-meter { height: .45rem; border-radius: 999px; background: var(--trans-muted); overflow: hidden; margin: .55rem 0 .65rem; }
-    .trans-meter span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--trans-accent), var(--trans-accent-2)); }
-    .trans-meter--done span { background: var(--trans-success); }
+    .trans-meter { height: .55rem; border-radius: 999px; background: var(--trans-muted); box-shadow: inset 0 1px 2px rgb(22 22 42 / .08); margin: .55rem 0 .65rem; }
+    .trans-meter span { position: relative; display: block; height: 100%; min-width: .55rem; border-radius: inherit; background: linear-gradient(90deg, var(--trans-accent), var(--trans-accent-2)); box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--trans-accent) 60%, transparent); transform-origin: left; animation: trans-meter-fill .9s cubic-bezier(.2, .8, .2, 1) both; }
+    .trans-meter span::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, rgb(255 255 255 / .35), transparent 65%); }
+    .trans-meter--done span { background: linear-gradient(90deg, var(--trans-success), color-mix(in srgb, var(--trans-success) 70%, #ffffff)); box-shadow: 0 2px 8px -2px color-mix(in srgb, var(--trans-success) 60%, transparent); }
+    @keyframes trans-meter-fill { from { transform: scaleX(0); } }
+    @media (prefers-reduced-motion: reduce) { .trans-meter span { animation: none; } }
     .trans-card-meta { display: flex; flex-wrap: wrap; gap: .25rem .9rem; color: var(--trans-text-3); font-size: .85rem; }
     .trans-card-meta .is-missing { color: var(--trans-danger); }
     .trans-card-meta .is-changed { color: var(--trans-warning); }

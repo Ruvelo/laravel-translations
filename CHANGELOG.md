@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-10-08
+
+### Changed
+
+- Nicer progress bars: a touch taller, with a soft gloss and glow, a green gradient when a language is complete, and a short fill animation (skipped when reduced motion is on).
+
 ## [1.1.1] - 2026-10-08
 
 ### Changed
@@ -44,7 +50,8 @@ First release.
 - Laravel Boost guidelines.
 - Ruvelo house style UI: light and dark, no build step, themable through CSS variables, usable inside your own layout.
 
-[Unreleased]: https://github.com/Ruvelo/laravel-translations/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/Ruvelo/laravel-translations/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/Ruvelo/laravel-translations/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/Ruvelo/laravel-translations/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/Ruvelo/laravel-translations/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Ruvelo/laravel-translations/releases/tag/v1.0.0
