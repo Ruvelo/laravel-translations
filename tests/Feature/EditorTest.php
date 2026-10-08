@@ -23,12 +23,24 @@ class EditorTest extends TestCase
     public function test_the_overview_shows_each_locales_progress(): void
     {
         Translations::set('fr', 'Sign out', 'Se déconnecter');
+        // Flags inline base64 that could match the numbers below; they have their own tests.
+        config(['translations.flags' => false]);
 
         $this->get('/translations')
             ->assertOk()
-            ->assertSeeInOrder(['English', 'Source', '100', 'German', '10', '9 missing', 'French', '70', '3 missing', '1 not exported'], false)
-            ->assertSee('1 change is not in your lang files yet')
+            ->assertSeeInOrder(['100', 'English', 'Source', '10', 'German', 'Just started', '9 missing', '70', 'French', 'In progress', '1 not exported', '3 missing'], false)
+            ->assertSee('One edit is live on the site but not in your lang files yet.')
+            ->assertSee('Translate 3 missing')
+            ->assertSee(route('translations.editor', ['locale' => 'fr', 'filter' => 'missing']), false)
+            ->assertSeeInOrder(['Recent edits', 'changed', 'Sign out', 'in French', 'Se déconnecter'], false)
             ->assertSee('Add a language');
+    }
+
+    public function test_the_recent_edits_feed_flags_placeholder_problems(): void
+    {
+        Translations::set('fr', 'Welcome back, :name!', 'Bon retour !');
+
+        $this->get('/translations')->assertOk()->assertSee('trans-feed-warn', false)->assertSee(':name');
     }
 
     public function test_the_editor_lists_source_and_translation(): void
@@ -209,5 +221,10 @@ class EditorTest extends TestCase
         app('view')->addLocation(dirname($this->lang));
 
         $this->get('/translations')->assertOk()->assertSee('<nav>Halyard</nav>', false)->assertSee('class="trans"', false);
+    }
+
+    public function test_languages_show_round_flags(): void
+    {
+        $this->get('/translations')->assertOk()->assertSee('class="trans-flag"', false)->assertSee('data:image/svg+xml;base64,', false);
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ruvelo\Translations;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
 use Ruvelo\Translations\Events\LocaleAdded;
@@ -159,6 +160,36 @@ final class Translations
     public static function locales(): array
     {
         return self::catalogue()->locales();
+    }
+
+    /**
+     * Display names of the people who made these edits, keyed by user id.
+     *
+     * @param  list<Entry>  $entries
+     * @return array<string, string>
+     */
+    public static function editorNames(array $entries): array
+    {
+        $ids = array_values(array_unique(array_filter(array_map(fn (Entry $entry) => $entry->override?->updated_by, $entries))));
+
+        /** @var class-string<Model> $model */
+        $model = config('translations.user_model') ?? config('auth.providers.users.model') ?? 'App\\Models\\User';
+
+        if ($ids === [] || ! class_exists($model)) {
+            return [];
+        }
+
+        $attribute = (string) config('translations.user_name_attribute', 'name');
+        $names = [];
+
+        foreach ($model::query()->whereKey($ids)->get() as $user) {
+            $name = $user->getAttribute($attribute);
+            if (is_string($name) && $name !== '') {
+                $names[(string) $user->getKey()] = $name;
+            }
+        }
+
+        return $names;
     }
 
     public static function sourceLocale(): string

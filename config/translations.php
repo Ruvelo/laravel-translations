@@ -94,6 +94,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Flags
+    |--------------------------------------------------------------------------
+    |
+    | Round language flags (bundled, from circle-flags) beside each language.
+    | A locale's region wins when a flag exists for it (pt_BR → pt-br), then
+    | its language. Map a locale to another flag here, or set to false to
+    | show none.
+    |
+    */
+
+    'flags' => [
+        // 'en' => 'en-us',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Layout
     |--------------------------------------------------------------------------
     |

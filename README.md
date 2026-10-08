@@ -113,6 +113,7 @@ php artisan vendor:publish --tag=translations-config
 | `path` | `translations` (`TRANSLATIONS_PATH`) | URL prefix |
 | `domain` | `null` | Serve the editor on its own (sub)domain |
 | `middleware` | `['web']` | Applied to every route (the gate is always checked) |
+| `flags` | `[]` | Map a locale to another round flag (`'en' => 'en-us'`), or `false` to hide flags |
 | `layout` | `null` | A view to render inside, e.g. `layouts.app` |
 | `section` | `content` | The section of that layout to fill |
 | `per_page` | `50` | Strings per page in the editor |
@@ -274,6 +275,10 @@ The demo and screenshots are built from the package itself: `composer demo` writ
 ## Credits
 
 Built by [François Bultez](https://github.com/francoisbultez) at [Ruvelo](https://github.com/Ruvelo), and everyone who [contributes](https://github.com/Ruvelo/laravel-translations/graphs/contributors).
+
+## Credits for bundled assets
+
+The round language flags are from [circle-flags](https://github.com/HatScripts/circle-flags) by HatScripts, MIT licensed; their licence is in `resources/flags/LICENSE.md`. Set `translations.flags` to `false` to hide them, or map a locale to another flag, e.g. `'en' => 'en-us'`.
 
 ## License
 

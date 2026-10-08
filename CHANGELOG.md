@@ -6,6 +6,14 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-08
+
+### Added
+
+- A new languages dashboard: an overall progress ring with the key numbers, a ring, status and a segmented translated / not exported / missing bar per language, a "Translate N missing" shortcut, and a recent-edits feed that flags placeholder problems.
+- `Translations::editorNames()` for the display names behind a list of edits.
+- Round language flags beside each language, from the bundled [circle-flags](https://github.com/HatScripts/circle-flags) set (MIT). A locale's region wins (`pt_BR` → Brazil), then its language; `translations.flags` maps a locale to another flag or turns them off.
+
 ## [1.0.0] - 2026-10-08
 
 First release.
@@ -30,5 +38,6 @@ First release.
 - Laravel Boost guidelines.
 - Ruvelo house style UI: light and dark, no build step, themable through CSS variables, usable inside your own layout.
 
-[Unreleased]: https://github.com/Ruvelo/laravel-translations/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/Ruvelo/laravel-translations/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/Ruvelo/laravel-translations/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Ruvelo/laravel-translations/releases/tag/v1.0.0

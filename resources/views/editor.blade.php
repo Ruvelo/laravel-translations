@@ -17,7 +17,7 @@
 
     <div class="trans-head">
         <div>
-            <h1>{{ $localeName }} <span class="trans-chip trans-chip--quiet">{{ $locale }}</span> @if ($isSource)<span class="trans-chip">Source</span>@endif</h1>
+            <h1>@if ($flag = \Ruvelo\Translations\Support\Flags::for($locale))<img class="trans-flag trans-flag--large" src="{{ $flag }}" alt="" width="34" height="34">@endif{{ $localeName }} <span class="trans-chip trans-chip--quiet">{{ $locale }}</span> @if ($isSource)<span class="trans-chip">Source</span>@endif</h1>
             <div class="trans-progress" style="margin-top: .6rem">
                 <span class="trans-meter @if ($progress->isComplete()) trans-meter--done @endif" role="progressbar" aria-label="Translated" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ $progress->percent() }}"><span style="width: {{ $progress->percent() }}%"></span></span>
                 <span>{{ $progress->percent() }}% · {{ number_format($progress->missing()) }} missing</span>
