@@ -86,8 +86,10 @@ class Importer
 
     /**
      * Import from barryvdh/laravel-translation-manager's table: rows with a
-     * value become overrides. Its "_json" group is the JSON file; groups
-     * like "vendor/courier/messages" belong to packages.
+     * value become overrides. Its "_json" group is the JSON file. It files a
+     * package's lines under "vendor/{package}" and always writes them to that
+     * package's messages.php, so that's the group they get here; the longer
+     * "vendor/{package}/{group}" form is accepted too.
      *
      * @throws ImportFailed
      */
@@ -106,8 +108,8 @@ class Importer
 
             if ($group === '_json') {
                 $group = Key::JSON;
-            } elseif (preg_match('#^vendor/([^/]+)/(.+)$#', $group, $m) === 1) {
-                [$namespace, $group] = [$m[1], $m[2]];
+            } elseif (preg_match('#^vendor/([^/]+)(?:/(.+))?$#', $group, $m) === 1) {
+                [$namespace, $group] = [$m[1], $m[2] ?? 'messages'];
             }
 
             $lines[] = [(string) $row->locale, $group, $namespace, (string) $row->key, (string) $row->value];

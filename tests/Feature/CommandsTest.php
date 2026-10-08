@@ -148,18 +148,21 @@ class CommandsTest extends TestCase
         DB::table('ltm_translations')->insert([
             ['locale' => 'fr', 'group' => 'billing', 'key' => 'invoice.paid', 'value' => 'Payée'],
             ['locale' => 'fr', 'group' => '_json', 'key' => 'Sign out', 'value' => 'Déconnexion'],
-            ['locale' => 'fr', 'group' => 'vendor/courier/messages', 'key' => 'failed', 'value' => 'Échec'],
+            // barryvdh's own form for package lines: "vendor/{package}", written to messages.php
+            ['locale' => 'fr', 'group' => 'vendor/courier', 'key' => 'failed', 'value' => 'Échec'],
+            ['locale' => 'fr', 'group' => 'vendor/courier/mail', 'key' => 'subject', 'value' => 'Votre facture'],
             ['locale' => 'fr', 'group' => 'billing', 'key' => 'cancel', 'value' => "Résilier l'abonnement"],
             ['locale' => 'fr', 'group' => 'billing', 'key' => 'refund', 'value' => null],
         ]);
 
         $this->artisan('translations:import', ['--translation-manager' => true])
-            ->expectsOutputToContain('Imported 3 translations (1 already matched).')
+            ->expectsOutputToContain('Imported 4 translations (1 already matched).')
             ->assertSuccessful();
 
         $this->assertSame('Payée', Translations::get('fr', 'billing.invoice.paid'));
         $this->assertSame('Déconnexion', Translations::get('fr', 'Sign out'));
         $this->assertSame('Échec', Translations::get('fr', 'courier::messages.failed'));
+        $this->assertSame('Votre facture', Translations::get('fr', 'courier::mail.subject'));
     }
 
     public function test_import_errors(): void
