@@ -274,7 +274,7 @@ The demo and screenshots are built from the package itself: `composer demo` writ
 
 ## Credits
 
-Built by [François Bultez](https://github.com/francoisbultez) at [Ruvelo](https://github.com/Ruvelo), and everyone who [contributes](https://github.com/Ruvelo/laravel-translations/graphs/contributors).
+Built by [François Bultez](https://github.com/francoisbultez) at [Valtry](https://valtry.co.uk/?utm_source=ruvelo&utm_medium=github&utm_campaign=laravel-translations), the website security scanner, and everyone who [contributes](https://github.com/Ruvelo/laravel-translations/graphs/contributors).
 
 ## Credits for bundled assets
 
